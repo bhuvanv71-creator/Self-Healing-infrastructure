@@ -1,0 +1,8 @@
+.env
+*.pem
+*.key
+secrets/
+credentials/
+__pycache__/
+*.pyc
+.terraform/

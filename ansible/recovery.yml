@@ -1,0 +1,20 @@
+---
+- name: Self Healing Infrastructure Recovery
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Restart failed NGINX container
+      ansible.builtin.command:
+        cmd: docker restart nginx
+
+    - name: Verify NGINX container status
+      ansible.builtin.command:
+        cmd: docker inspect nginx
+      register: nginx_status
+      changed_when: false
+
+    - name: Display recovery result
+      ansible.builtin.debug:
+        msg: "NGINX container inspection successful"
